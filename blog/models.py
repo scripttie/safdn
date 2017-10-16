@@ -12,7 +12,9 @@ class BlogIndexPage(Page):
 
 	def get_content(self, request):
 		context = super(BlogIndexPage, self).get_context(request)
-		blogpages = 
+		blogpages = self.get_children().live().order_by('-first_published_at')
+		context['blogpages'] = blogpages
+		return context
 
 	# date = models.DateField("Post date")
 	# intro = models.CharField(max_length=250)
